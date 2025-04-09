@@ -82,7 +82,7 @@ public class FolderCleaner {
                 }
             }
         }
-        // После удаления содержимого, удаляем саму папку
+
         return directory.delete();
     }
 }

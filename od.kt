@@ -1,26 +1,29 @@
-object TestFolderCreator {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val basePath: String = "C:/Users/arina_6wfwgf1/Desktop/lab_5_so"
 
-        for (i in 1..3) {
-            val folder: File = File(basePath + "/test_old_folder_" + i)
-            if (!folder.exists()) {
-                val created: Boolean = folder.mkdir()
-                if (created) {
-                    // Установим дату модификации на 40 дней назад
-                    val cal: Calendar = Calendar.getInstance()
-                    cal.add(Calendar.DAY_OF_YEAR, -40) // 40 дней назад
-                    val modified: Boolean = folder.setLastModified(cal.getTimeInMillis())
+    import java.io.File;
+    import java.io.IOException;
+    import java.util.Calendar;
 
-                    kotlin.io.println(
-                        "Создана папка: " + folder.getName() +
-                                ", дата изменена: " + modified
-                    )
+    public class TestFolderCreator {
+        public static void main(String[] args) {
+            String basePath = "C:/Users/arina_6wfwgf1/Desktop/lab_5_so";
+
+            for (int i = 1; i <= 3; i++) {
+                File folder = new File(basePath + "/test_old_folder_" + i);
+                if (!folder.exists()) {
+                    boolean created = folder.mkdir();
+                    if (created) {
+                        // Установим дату модификации на 40 дней назад
+                        Calendar cal = Calendar.getInstance();
+                        cal.add(Calendar.DAY_OF_YEAR, -40); // 40 дней назад
+                        boolean modified = folder.setLastModified(cal.getTimeInMillis());
+
+                        System.out.println("Создана папка: " + folder.getName() +
+                                ", дата изменена: " + modified);
+                    }
+                } else {
+                    System.out.println("Папка уже существует: " + folder.getName());
                 }
-            } else {
-                kotlin.io.println("Папка уже существует: " + folder.getName())
             }
         }
     }
-}
+
